@@ -10,9 +10,9 @@ public class Person {
   private TypeOfEmployment typeOfEmployment;
 
   public enum TypeOfEmployment {
-    FullTime,
-    PartTime,
-    External
+    FULL_TIME,
+    PART_TIME,
+    EXTERNAL
   }
 
   public Person(
@@ -26,5 +26,18 @@ public class Person {
     this.dateOfBirth = dateOfBirth;
     this.dateOfEmployment = dateOfEmployment;
     this.typeOfEmployment = typeOfEmployment;
+  }
+
+  @Override
+  public String toString() {
+    return this.name
+        + " "
+        + this.surname
+        + " "
+        + this.dateOfBirth
+        + " "
+        + this.dateOfEmployment
+        + " "
+        + this.typeOfEmployment;
   }
 }

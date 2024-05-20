@@ -1,7 +1,5 @@
 package org.kamilG;
 
-import java.time.LocalDateTime;
-
 public abstract class Vehicle {
   int loadCapacity;
   int yearOfProduction;
@@ -13,7 +11,17 @@ public abstract class Vehicle {
   String model;
 
   String getInfo() {
-    return this.make + " " + this.model + " " + this.mileage + " " + this.yearOfProduction;
+    return this.make
+        + " "
+        + this.model
+        + " "
+        + this.mileage
+        + " "
+        + this.yearOfProduction
+        + " "
+        + this.loadCapacity
+        + " "
+        + this.yearOfProduction;
   }
 
   void getToWarehouse(Warehouse warehouse) {
@@ -33,10 +41,13 @@ public abstract class Vehicle {
   }
 
   public enum FuelType {
-    Pb95,
-    Pb98,
-    Pb100,
+    PB,
     ON,
-    Ev
+    EV
+  }
+
+  @Override
+  public String toString() {
+    return this.make + " " + this.model + " " + this.mileage + "  " + this.currentFuelLevel;
   }
 }

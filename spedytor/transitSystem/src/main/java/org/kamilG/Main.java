@@ -59,6 +59,7 @@ public class Main {
 
                 System.out.println("Choose item: ");
                 int itemId = scanner.nextInt() - 1;
+                scanner.nextLine();
 
                 if (itemId == i - 1) break;
 
@@ -96,6 +97,7 @@ public class Main {
               }
 
               int warehouseId = scanner.nextInt() - 1;
+              scanner.nextLine();
               facade.removeWarehouse(warehouseId);
             }
             case 5 -> {}
@@ -122,25 +124,31 @@ public class Main {
             System.out.println("4. Remove");
             System.out.println();
             System.out.println("5. Quit");
+
             vehicleOperation = scanner.nextInt();
+            scanner.nextLine();
 
             switch (vehicleOperation) {
                 // a) add
               case 1 -> {
                 System.out.println("Enter load capacity: ");
                 int loadCapacity = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Enter year of production: ");
                 int yearOfProduction = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Enter mileage: ");
                 int mileage = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Enter current fuel level: ");
                 int currentFuelLevel = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("Enter fuel type: ");
-                Vehicle.FuelType fuelType = Vehicle.FuelType.valueOf(scanner.nextLine());
+                Vehicle.FuelType fuelType = Vehicle.FuelType.valueOf(scanner.nextLine().toUpperCase());
 
                 System.out.println("Enter location: ");
                 String location = scanner.nextLine();
@@ -181,6 +189,7 @@ public class Main {
                 }
 
                 int vehicleId = scanner.nextInt() - 1;
+                scanner.nextLine();
                 facade.removeVehicle(vehicleId);
               }
               case 5 -> {}
@@ -202,6 +211,7 @@ public class Main {
             System.out.println("4. Quit");
 
             whichPersonOperation = scanner.nextInt();
+            scanner.nextLine();
 
             switch (whichPersonOperation) {
                 // a) add
@@ -215,7 +225,7 @@ public class Main {
                 System.out.println("Enter date of birth ");
                 String dateOfBirthInput = scanner.nextLine();
 
-                DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+                DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d/M/yyyy");
                 LocalDate dateOfBirth = LocalDate.parse(dateOfBirthInput, dateFormat);
                 LocalDate dateOfEmployment = LocalDate.now();
                 Person.TypeOfEmployment employmentType = null;
@@ -225,7 +235,7 @@ public class Main {
                   System.out.println("Enter type of employment: ");
                   String employment = scanner.nextLine();
                   try {
-                    employmentType = Person.TypeOfEmployment.valueOf(employment);
+                    employmentType = Person.TypeOfEmployment.valueOf(employment.toUpperCase());
                     isValid = true;
                   } catch (IllegalArgumentException e) {
                     System.out.println("Invalid type of employment. Please try again.");
@@ -250,6 +260,7 @@ public class Main {
                   System.out.println(i++ + " " + person);
                 }
                 int personId = scanner.nextInt() - 1;
+                scanner.nextLine();
                 facade.removePerson(personId);
               }
 
