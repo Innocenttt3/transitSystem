@@ -13,6 +13,7 @@ public class Main {
     System.out.println(
         "Welcome to our sophisticated content and management system! To begin, select your operation:");
     Scanner scanner = new Scanner(System.in);
+
     int whichMainOperation = 0;
     while (whichMainOperation != 5) {
       System.out.println("1. Warehouse management");
@@ -88,9 +89,7 @@ public class Main {
               facade.removeWarehouse(warehouseId);
             }
             case 5 -> {}
-            default -> {
-              System.out.println("Invalid input");
-            }
+            default -> System.out.println("Invalid input");
           }
         }
 
