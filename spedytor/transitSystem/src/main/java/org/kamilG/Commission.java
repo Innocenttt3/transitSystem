@@ -3,21 +3,20 @@ package org.kamilG;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Commission {
-    Person driver;
-    Vehicle vehicle;
-    LocalDate startDate;
-    LocalDate fullfillDate;
-    Warehouse sourceWarehouse;
-    Warehouse destinationWarehouse;
-    LocalDate Deadline;
-    List<Item> items;
+public class Commission extends ItemHolder {
+    private Person driver;
+    private Vehicle vehicle;
+    private LocalDate startDate;
+    private LocalDate fulfillDate;
+    private Warehouse sourceWarehouse;
+    private Warehouse destinationWarehouse;
+    private LocalDate deadline;
 
-    void fullfillCommission(Warehouse sourceWarehouse, Warehouse destinationWarehouse) {
-        //TODO
-    }
+    void fulfillCommission() {
+        this.vehicle.setLocation(destinationWarehouse.getCity());
 
-    void edit(){
-        //TODO
+        transferAllItems(destinationWarehouse);
+
+        this.fulfillDate = LocalDate.now();
     }
 }

@@ -1,11 +1,42 @@
 package org.kamilG;
 
-public interface Vehicle {
-  String getInfo();
+import java.time.LocalDateTime;
 
-  void sentToWarehouse(Warehouse warehouse);
+public abstract class Vehicle {
+  int loadCapacity;
+  int yearOfProduction;
+  long mileage;
+  float currentFuelLevel;
+  Truck.FuelType fuelType;
+  String location;
+  String make;
+  String model;
 
-  void updateMileage(int mileage);
+  String getInfo() {
+    return this.make + " " + this.model + " " + this.mileage + " " + this.yearOfProduction;
+  }
 
-  String getLocation();
+  void getToWarehouse(Warehouse warehouse) {
+    this.location = warehouse.getCity();
+  }
+
+  void updateMileage(int mileage) {
+    this.mileage = mileage;
+  }
+
+  String getLocation() {
+    return this.location;
+  }
+
+  void setLocation(String location) {
+    this.location = location;
+  }
+
+  public enum FuelType {
+    Pb95,
+    Pb98,
+    Pb100,
+    ON,
+    Ev
+  }
 }

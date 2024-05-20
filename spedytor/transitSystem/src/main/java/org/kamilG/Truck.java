@@ -6,32 +6,24 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Truck implements Vehicle {
-  int loadCapacity;
-  LocalDateTime dateOfProduction;
-  long mileage;
-  float currentFuelLevel;
-  FuelType fuelType;
-  Location location;
-  String make;
-  String model;
-
-  @Override
-  public String getInfo() {
-    return this.make + " " + this.model + " " + this.mileage + " " + this.dateOfProduction;
-  }
-
-  @Override
-  public void sentToWarehouse(Warehouse warehouse) {}
-
-  @Override
-  public void updateMileage(int mileage) {}
-
-  public enum FuelType {
-    Pb95,
-    Pb98,
-    Pb100,
-    ON,
-    Ev,
-  }
+public class Truck extends Vehicle {
+    public Truck(
+            int loadCapacity,
+            int yearOfProduction,
+            long mileage,
+            float currentFuelLevel,
+            Truck.FuelType fuelType,
+            String location,
+            String make,
+            String model
+    ) {
+        this.loadCapacity = loadCapacity;
+        this.yearOfProduction = yearOfProduction;
+        this.mileage = mileage;
+        this.currentFuelLevel = currentFuelLevel;
+        this.fuelType = fuelType;
+        this.location = location;
+        this.make = make;
+        this.model = model;
+    }
 }
