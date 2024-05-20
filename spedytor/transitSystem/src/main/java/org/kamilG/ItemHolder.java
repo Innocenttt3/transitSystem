@@ -10,6 +10,10 @@ public abstract class ItemHolder {
         return items;
     }
 
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
     public ItemHolder() {}
 
     public ItemHolder(List<Item> items) {
@@ -49,5 +53,4 @@ public abstract class ItemHolder {
         itemHolder.addItems(items);
         items.clear();
     }
-
 }

@@ -24,6 +24,8 @@ public class Main {
       System.out.println("5. Quit");
 
       whichMainOperation = scanner.nextInt();
+      scanner.nextLine();
+
       switch (whichMainOperation) {
           /* 1. Warehouse management */
         case 1 -> {
@@ -37,42 +39,50 @@ public class Main {
           System.out.println("5. Quit");
 
           int whichManagementOption = scanner.nextInt();
+          scanner.nextLine();
 
           switch (whichManagementOption) {
               // a) add
             case 1 -> {
-              while (scanner.hasNextLine()) {
-                System.out.println("Enter city: ");
-                String city = scanner.nextLine();
+              System.out.println("Enter city: ");
+              String city = scanner.nextLine();
 
-                List<Item> itemsToAdd = new ArrayList<>();
+              List<Item> itemsToAdd = new ArrayList<>();
 
-                while (scanner.hasNextLine()) {
-                  int i = 1;
-                  for (Item item : facade.getItems()) {
-                    System.out.println(i++ + ". " + item);
-                  }
-
-                  System.out.println("Choose item: ");
-                  int itemId = scanner.nextInt() - 1;
-
-                  System.out.printf(
-                      "Choose quantity (0 - %d): \n", facade.getItems().get(itemId).quantity);
-                  int quantity = scanner.nextInt();
-
-                  Item itemToTransfer = facade.transferItems(itemId, quantity);
-                  itemsToAdd.add(itemToTransfer);
-
-                  facade.addWarehouse(new Warehouse(city, itemsToAdd));
+              while (true) {
+                int i = 1;
+                for (Item item : facade.getItems()) {
+                  System.out.println(i++ + ". " + item);
                 }
+
+                System.out.println(i + ". Quit");
+
+                System.out.println("Choose item: ");
+                int itemId = scanner.nextInt() - 1;
+
+                if (itemId == i - 1) break;
+
+                System.out.printf(
+                    "Choose quantity (0 - %d): \n", facade.getItems().get(itemId).quantity);
+                int quantity = scanner.nextInt();
+                scanner.nextLine();
+
+                Item itemToTransfer = facade.transferItems(itemId, quantity);
+                itemsToAdd.add(itemToTransfer);
               }
+
+              facade.addWarehouse(new Warehouse(city, itemsToAdd));
             }
               // b) display (list)
             case 2 -> {
+              System.out.println("Warehouses:");
+
               int i = 1;
               for (Warehouse warehouse : facade.warehouses) {
                 System.out.println(i++ + ". " + warehouse);
               }
+
+              System.out.println();
             }
               // c) update
             case 3 -> {
@@ -248,7 +258,7 @@ public class Main {
             }
           }
         }
-        case 5 -> System.out.println("Invalid input option");
+        case 5 -> {}
         default -> System.out.println("Bye");
       }
 

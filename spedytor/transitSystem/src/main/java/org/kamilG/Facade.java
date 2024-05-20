@@ -1,13 +1,22 @@
 package org.kamilG;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Facade extends ItemHolder {
-  List<Warehouse> warehouses;
-  List<Commission> commissions;
-  List<Vehicle> vehicles;
-  List<Person> people;
+  List<Warehouse> warehouses = new ArrayList<>();
+  List<Commission> commissions = new ArrayList<>();
+  List<Vehicle> vehicles = new ArrayList<>();
+  List<Person> people = new ArrayList<>();
+
+  Facade() {
+    this.setItems(
+        new ArrayList<>(Arrays.asList(
+            new Item("Coders' tears", 105253),
+            new Item("Michas", 60),
+            new Item("Papieska Kremówka", 2137))));
+  }
 
   void addWarehouse(Warehouse warehouse) {
     warehouses.add(warehouse);
