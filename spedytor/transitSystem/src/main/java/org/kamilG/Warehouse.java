@@ -1,6 +1,5 @@
 package org.kamilG;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse extends ItemHolder {
@@ -23,4 +22,7 @@ public class Warehouse extends ItemHolder {
   public String toString() {
     return this.city + ": " + getItems().toString();
   }
+
+
+
 }

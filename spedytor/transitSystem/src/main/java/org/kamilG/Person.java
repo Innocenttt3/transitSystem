@@ -40,4 +40,12 @@ public class Person {
         + " "
         + this.typeOfEmployment;
   }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getSurname() {
+    return surname;
+  }
 }

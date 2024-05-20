@@ -16,6 +16,7 @@ public class Main {
 
     int whichMainOperation = 0;
     while (whichMainOperation != 5) {
+      System.out.println("---------- Main Menu ----------");
       System.out.println("1. Warehouse management");
       System.out.println("2. Commission management");
       System.out.println("3. Vehicle management");
@@ -107,10 +108,151 @@ public class Main {
 
           /* 2. Commission management */
           // a) create
-          // b) display(list)
+          // b) display (list)
           // c) edit
           // d) fulfill
           // e) remove
+        case 2 -> {
+          int whichCommissionOption = 0;
+          while (whichCommissionOption != 6) {
+            System.out.println("---------- Commission management ----------");
+
+            System.out.println("1. Create");
+            System.out.println("2. Display");
+            System.out.println("3. Edit");
+            System.out.println("4. Fulfill");
+            System.out.println("5. Remove");
+            System.out.println();
+            System.out.println("6. Quit");
+
+            whichCommissionOption = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (whichCommissionOption) {
+                // a) create
+              case 1 -> {
+                int i = 1;
+                for (Person person : facade.persons) {
+                  System.out.println(i++ + ". " + person);
+                }
+
+                System.out.println("Enter driver id: ");
+                int personId = scanner.nextInt() - 1;
+                scanner.nextLine();
+                Person person = facade.getPersons().get(personId);
+
+                i = 1;
+                for (Vehicle vehicle : facade.vehicles) {
+                  System.out.println(i++ + ". " + vehicle);
+                }
+
+                System.out.println("Enter vehicle id: ");
+                int vehicleId = scanner.nextInt() - 1;
+                scanner.nextLine();
+                Vehicle vehicle = facade.getVehicles().get(vehicleId);
+
+                System.out.println("Start date format(d/M/yyyy):");
+                String startDateInput = scanner.nextLine();
+
+                DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d/M/yyyy");
+                LocalDate startDate = LocalDate.parse(startDateInput, dateFormat);
+
+                System.out.println("End date format(d/M/yyyy):");
+                String endDateInput = scanner.nextLine();
+
+                LocalDate endDate = LocalDate.parse(endDateInput, dateFormat);
+
+                i = 1;
+                for (Warehouse warehouse : facade.warehouses) {
+                  System.out.println(i++ + ". " + warehouse);
+                }
+
+                System.out.println("Enter source warehouse id: ");
+                int sourceWarehouseId = scanner.nextInt() - 1;
+                scanner.nextLine();
+                Warehouse sourceWarehouse = facade.getWarehouses().get(sourceWarehouseId);
+
+                System.out.println("Enter destination warehouse id: ");
+                int destinationWarehouseId = scanner.nextInt() - 1;
+                scanner.nextLine();
+                Warehouse destinationWarehouse = facade.getWarehouses().get(destinationWarehouseId);
+
+                List<Item> itemsToAdd = new ArrayList<>();
+                while (true) {
+                  i = 1;
+                  for (Item item : sourceWarehouse.getItems()) {
+                    System.out.println(i++ + ". " + item);
+                  }
+
+                  System.out.println(i + ". Quit");
+
+                  System.out.println("Choose item: ");
+                  int itemId = scanner.nextInt() - 1;
+                  scanner.nextLine();
+
+                  if (itemId == i - 1) break;
+
+                  System.out.printf(
+                          "Choose quantity (0 - %d): \n", sourceWarehouse.getItems().get(itemId).quantity);
+                  int quantity = scanner.nextInt();
+                  scanner.nextLine();
+
+                  Item itemToTransfer = sourceWarehouse.transferItems(itemId, quantity);
+                  itemsToAdd.add(itemToTransfer);
+                }
+
+                facade.addCommission(
+                    new Commission(
+                        person,
+                        vehicle,
+                        startDate,
+                        sourceWarehouse,
+                        destinationWarehouse,
+                        endDate,
+                            itemsToAdd));
+              }
+                // b) display (list)
+              case 2 -> {
+                System.out.println("Commissions:");
+
+                int i = 1;
+                for (Commission commission : facade.commissions) {
+                  System.out.println(i++ + ". " + commission);
+                }
+
+                System.out.println();
+              }
+                // c) edit
+              case 3 -> {
+                // TODO
+              }
+                // d) fulfill
+              case 4 -> {
+                int i = 1;
+                for (Commission commission : facade.commissions) {
+                  System.out.println(i++ + ". " + commission);
+                }
+
+                int commissionId = scanner.nextInt() - 1;
+                scanner.nextLine();
+                facade.fulfillCommission(commissionId);
+              }
+                // e) remove
+              case 5 -> {
+                int i = 1;
+                for (Commission commission : facade.commissions) {
+                  System.out.println(i++ + ". " + commission);
+                }
+
+                int commissionId = scanner.nextInt() - 1;
+                scanner.nextLine();
+                facade.removeCommission(commissionId);
+              }
+              case 6 -> {}
+              default -> System.out.println("Invalid input");
+            }
+          }
+        }
 
           /* 3. Vehicle management */
         case 3 -> {
@@ -147,8 +289,9 @@ public class Main {
                 int currentFuelLevel = scanner.nextInt();
                 scanner.nextLine();
 
-                System.out.println("Enter fuel type: ");
-                Vehicle.FuelType fuelType = Vehicle.FuelType.valueOf(scanner.nextLine().toUpperCase());
+                System.out.println("Enter fuel type: (PB/ON/EV)");
+                Vehicle.FuelType fuelType =
+                    Vehicle.FuelType.valueOf(scanner.nextLine().toUpperCase());
 
                 System.out.println("Enter location: ");
                 String location = scanner.nextLine();
@@ -222,7 +365,7 @@ public class Main {
                 System.out.println("Enter surname: ");
                 String surname = scanner.nextLine();
 
-                System.out.println("Enter date of birth ");
+                System.out.println("Enter date of birth format(d/M/yyyy):  ");
                 String dateOfBirthInput = scanner.nextLine();
 
                 DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d/M/yyyy");
@@ -232,7 +375,8 @@ public class Main {
 
                 boolean isValid = false;
                 do {
-                  System.out.println("Enter type of employment: ");
+                  System.out.println(
+                      "Enter type of employment (FULL_TIME/PART_TIME/EXTERNAL):");
                   String employment = scanner.nextLine();
                   try {
                     employmentType = Person.TypeOfEmployment.valueOf(employment.toUpperCase());
@@ -248,7 +392,7 @@ public class Main {
               }
                 // b) display (list)
               case 2 -> {
-                for (Person person : facade.people) {
+                for (Person person : facade.persons) {
                   System.out.println(person);
                 }
               }
@@ -256,7 +400,7 @@ public class Main {
               case 3 -> {
                 int i = 1;
                 System.out.println("Choose which person to remove");
-                for (Person person : facade.people) {
+                for (Person person : facade.persons) {
                   System.out.println(i++ + " " + person);
                 }
                 int personId = scanner.nextInt() - 1;

@@ -50,4 +50,9 @@ public abstract class Vehicle {
   public String toString() {
     return this.make + " " + this.model + " " + this.mileage + "  " + this.currentFuelLevel;
   }
+
+  public String getModel() {
+    return model;
+  }
+
 }
