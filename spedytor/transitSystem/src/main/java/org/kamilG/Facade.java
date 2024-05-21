@@ -69,11 +69,11 @@ public class Facade extends ItemHolder {
     vehicles.remove(vehicle);
   }
 
-  void addPerson(Person person) {
+  public void addPerson(Person person) {
     persons.add(person);
   }
 
-  void removePerson(int id) {
+  public void removePerson(int id) {
     persons.remove(id);
   }
 
