@@ -23,7 +23,10 @@ public class MainMenuState implements MenuState {
 
       case 4 -> context.setCurrentState(new PersonManagementState());
 
-      case 5 -> context.setCurrentState(null);
+      case 5 -> {
+        System.out.println("Bye");
+        context.setCurrentState(null);
+      }
 
       default -> System.out.println("Invalid input");
     }

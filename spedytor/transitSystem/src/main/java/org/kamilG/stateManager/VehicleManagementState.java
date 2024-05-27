@@ -22,7 +22,7 @@ public class VehicleManagementState implements MenuState {
       case 2 -> handleDisplayVehicle(menuContext);
       case 3 -> handleUpdateVehicle(menuContext);
       case 4 -> handleRemoveVehicle(menuContext);
-      case 5 -> {}
+      case 5 -> menuContext.setCurrentState(new MainMenuState());
       default -> System.out.println("Invalid input option");
     }
   }

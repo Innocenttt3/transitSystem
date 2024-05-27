@@ -20,7 +20,7 @@ public class PersonManagementState implements MenuState {
       case 1 -> handleAddPerson(menuContext);
       case 2 -> handleDisplayPersons(menuContext);
       case 3 -> handleRemovePerson(menuContext);
-      case 4 -> {}
+      case 4 -> menuContext.setCurrentState(new MainMenuState());
       default -> System.out.println("Invalid input option");
     }
   }

@@ -28,7 +28,7 @@ public class CommissionManagementState implements MenuState {
       case 3 -> handleEditCommission(menuContext);
       case 4 -> handleFulfillCommission(menuContext);
       case 5 -> handleRemoveCommission(menuContext);
-      case 6 -> {}
+      case 6 -> menuContext.setCurrentState(new MainMenuState());
       default -> System.out.println("Invalid input option");
     }
   }

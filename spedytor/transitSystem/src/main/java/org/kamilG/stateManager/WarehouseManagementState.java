@@ -1,10 +1,9 @@
 package org.kamilG.stateManager;
 
-import org.kamilG.Item;
-import org.kamilG.Warehouse;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.kamilG.Item;
+import org.kamilG.Warehouse;
 
 public class WarehouseManagementState implements MenuState {
   @Override
@@ -25,7 +24,7 @@ public class WarehouseManagementState implements MenuState {
       case 2 -> handleDisplayWarehouse(menuContext);
       case 3 -> handleUpdateWarehouse(menuContext);
       case 4 -> handleRemoveWarehouse(menuContext);
-      case 5 -> {}
+      case 5 -> menuContext.setCurrentState(new MainMenuState());
       default -> System.out.println("Invalid input option");
     }
   }
