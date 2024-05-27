@@ -65,7 +65,7 @@ public class Main {
                 if (itemId == i - 1) break;
 
                 System.out.printf(
-                    "Choose quantity (0 - %d): \n", facade.getItems().get(itemId).quantity);
+                    "Choose quantity (0 - %d): \n", facade.getItems().get(itemId).getQuantity());
                 int quantity = scanner.nextInt();
                 scanner.nextLine();
 
@@ -193,7 +193,7 @@ public class Main {
                   if (itemId == i - 1) break;
 
                   System.out.printf(
-                          "Choose quantity (0 - %d): \n", sourceWarehouse.getItems().get(itemId).quantity);
+                          "Choose quantity (0 - %d): \n", sourceWarehouse.getItems().get(itemId).getQuantity());
                   int quantity = scanner.nextInt();
                   scanner.nextLine();
 

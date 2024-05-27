@@ -30,11 +30,11 @@ public class Facade extends ItemHolder {
         new ArrayList<>(Arrays.asList(new Warehouse("Berlin", new ArrayList<>(List.of(new Item("Michas", 60)))), new Warehouse("Moskwa", new ArrayList<>())));
   }
 
-  void addWarehouse(Warehouse warehouse) {
+  public void addWarehouse(Warehouse warehouse) {
     warehouses.add(warehouse);
   }
 
-  void removeWarehouse(int warehouseId) {
+  public void removeWarehouse(int warehouseId) {
     Warehouse warehouse = warehouses.get(warehouseId);
     warehouse.transferAllItems(this);
 
@@ -45,11 +45,11 @@ public class Facade extends ItemHolder {
     warehouses.remove(warehouse);
   }
 
-  void addCommission(Commission commission) {
+  public void addCommission(Commission commission) {
     commissions.add(commission);
   }
 
-  void removeCommission(int commissionId) {
+  public void removeCommission(int commissionId) {
     commissions.remove(commissionId);
   }
 
@@ -57,11 +57,11 @@ public class Facade extends ItemHolder {
     commissions.remove(commission);
   }
 
-  void addVehicle(Vehicle vehicle) {
+  public void addVehicle(Vehicle vehicle) {
     vehicles.add(vehicle);
   }
 
-  void removeVehicle(int vehicleId) {
+  public void removeVehicle(int vehicleId) {
     vehicles.remove(vehicleId);
   }
 
@@ -77,7 +77,7 @@ public class Facade extends ItemHolder {
     persons.remove(id);
   }
 
-  void fulfillCommission(int commissionId) {
+  public void fulfillCommission(int commissionId) {
     commissions.get(commissionId).fulfillCommission();
   }
 
@@ -90,5 +90,9 @@ public class Facade extends ItemHolder {
 
   public List<Warehouse> getWarehouses() {
     return warehouses;
+  }
+
+  public List<Commission> getCommissions() {
+    return commissions;
   }
 }

@@ -2,7 +2,7 @@ package org.kamilG;
 
 public class Item {
   String name;
-  int quantity;
+  private int quantity;
 
   public Item(String name, int quantity) {
     this.name = name;
@@ -16,5 +16,9 @@ public class Item {
   @Override
   public String toString() {
     return name + " " + quantity;
+  }
+
+  public int getQuantity() {
+    return quantity;
   }
 }

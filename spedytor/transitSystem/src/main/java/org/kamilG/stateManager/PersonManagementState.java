@@ -63,8 +63,9 @@ public class PersonManagementState implements MenuState {
       }
     } while (!isValid);
 
-    Person personToAdd = new Person(name, surname, dateOfBirth, dateOfEmployment, employmentType);
-    menuContext.getFacade().addPerson(personToAdd);
+    menuContext
+        .getFacade()
+        .addPerson(new Person(name, surname, dateOfBirth, dateOfEmployment, employmentType));
   }
 
   private void handleDisplayPersons(MenuContext menuContext) {
