@@ -1,6 +1,7 @@
 package org.kamilG;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Commission extends ItemHolder {
@@ -27,7 +28,7 @@ public class Commission extends ItemHolder {
     this.sourceWarehouse = sourceWarehouse;
     this.destinationWarehouse = destinationWarehouse;
     this.deadline = deadline;
-    setItems(items);
+    addItems(items);
   }
 
   void fulfillCommission() {
@@ -36,6 +37,10 @@ public class Commission extends ItemHolder {
     transferAllItems(destinationWarehouse);
 
     this.fulfillDate = LocalDate.now();
+  }
+
+  public LocalDate getFulfillDate () {
+    return fulfillDate;
   }
 
   @Override

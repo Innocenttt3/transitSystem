@@ -24,15 +24,21 @@ public abstract class ItemHolder {
     List<Item> addedItemsNew = new ArrayList<>(addedItems);
 
     for (Item addedItem : addedItems) {
+      boolean found = false;
       for (Item warehouseItem : items) {
-        if (addedItem.equals(warehouseItem)) {
+        if (addedItem.name.equals(warehouseItem.name)) {
           warehouseItem.addQuantity(addedItem.getQuantity());
           addedItemsNew.remove(addedItem);
+          found = true;
+          break;
         }
+      }
+      if(!found) {
+        items.add(addedItem);
       }
     }
 
-    items.addAll(addedItemsNew);
+    //items.addAll(addedItemsNew);
   }
 
   public Item transferItems(int itemId, int amount) {
