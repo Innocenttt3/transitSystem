@@ -12,7 +12,7 @@ public class Facade extends ItemHolder {
   List<Commission> commissions = new ArrayList<>();
   List<Vehicle> vehicles = new ArrayList<>();
   List<Person> persons = new ArrayList<>();
-
+  
   public void addWarehouse(Warehouse warehouse) {
     warehouses.add(warehouse);
   }
