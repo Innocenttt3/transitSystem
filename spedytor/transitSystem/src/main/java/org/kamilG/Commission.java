@@ -38,6 +38,10 @@ public class Commission extends ItemHolder {
     this.fulfillDate = LocalDate.now();
   }
 
+  public LocalDate getFulfillDate () {
+    return fulfillDate;
+  }
+
   @Override
   public String toString() {
     return "Commission "
